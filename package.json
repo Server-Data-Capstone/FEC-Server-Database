@@ -21,11 +21,15 @@
   },
   "homepage": "https://github.com/Server-Data-Capstone/Reviews-Backend#readme",
   "dependencies": {
+    "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
+    "mongoose": "^7.2.0",
     "morgan": "^1.10.0",
     "node": "^20.2.0",
-    "nodemon": "^2.0.22",
     "pg": "^8.11.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
   }
 }
