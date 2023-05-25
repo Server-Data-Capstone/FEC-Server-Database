@@ -1,0 +1,35 @@
+{
+  "name": "reviews-backend",
+  "version": "1.0.0",
+  "description": "DBMS for Reviews&Ratings",
+  "main": "server/index.js",
+  "scripts": {
+    "start": "nodemon server/index.js",
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Server-Data-Capstone/Reviews-Backend.git"
+  },
+  "keywords": [
+    "SDC"
+  ],
+  "author": "Eric Lee",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Server-Data-Capstone/Reviews-Backend/issues"
+  },
+  "homepage": "https://github.com/Server-Data-Capstone/Reviews-Backend#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "mongoose": "^7.2.0",
+    "morgan": "^1.10.0",
+    "node": "^20.2.0",
+    "pg": "^8.11.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  }
+}
