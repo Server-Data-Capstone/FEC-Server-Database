@@ -78,7 +78,10 @@ CSV HEADER;
 
 -- MAYBE OUT OF SYNC FIXES
 
--- SELECT setval(pg_get_serial_sequence('reviews', 'id'), max(id)) FROM reviews;
+SELECT setval(pg_get_serial_sequence('reviews', 'id'), MAX(id)) FROM reviews;
+SELECT setval(pg_get_serial_sequence('characteristics', 'id'), MAX(id)) FROM characteristics;
+SELECT setval(pg_get_serial_sequence('characteristics_reviews', 'id'), MAX(id)) FROM characteristics_reviews;
+SELECT setval(pg_get_serial_sequence('reviews_photos', 'id'), MAX(id)) FROM reviews_photos;
 
 -- SELECT pg_catalog.setval(pg_get_serial_sequence('reviews', 'id'), (SELECT MAX(id) FROM reviews)+1);
 
