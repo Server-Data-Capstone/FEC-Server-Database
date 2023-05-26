@@ -31,5 +31,36 @@ module.exports = {
         console.log('ERROR CONTROLLERS GETMETA', err)
         res.status(404).send(err)
       })
+  },
+  putHelpful: (req, res) => {
+    dbMarkHelpful(req.params.review_id)
+      .then((data) => {
+        res.status(204).send(data)
+      })
+      .catch((err) => {
+        console.log('ERROR CONTROLLERS PUTHELPFUL', err)
+        res.status(404).send(err)
+      })
+  },
+  putReport: (req, res) => {
+    dbMarkReported(req.params.review_id)
+      .then((data) => {
+        res.status(204).send(data)
+      })
+      .catch((err) => {
+        console.log('ERROR CONTROLLERS PUTREPORT', err)
+        res.status(404).send(err)
+      })
+  },
+  postReview: (req, res) => {
+    const revData = {product_id: req.body.product_id, ...req.body}
+    dbPostReview(revData)
+      .then((data) => {
+        res.status(201).send('Posted')
+      })
+      .catch((err) => {
+        console.log('ERROR CONTROLLERS POST', err)
+        res.status(500).send(err)
+      })
   }
 }
