@@ -6,13 +6,14 @@ module.exports = (review_id) => {
     SET helpfulness = helpfulness + 1
     WHERE id=$1`,
     values: [review_id]
-  }
+  };
 
   return pool.connect()
     .then((client) => {
       return client.query(query)
         .then((response) => {
           client.release()
+          console.log('SUCCESS HELPFUL')
           return response.rows
         })
         .catch((err) => {

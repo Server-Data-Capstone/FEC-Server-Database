@@ -4,7 +4,7 @@
   "description": "DBMS for Reviews&Ratings",
   "main": "server/index.js",
   "scripts": {
-    "start": "nodemon server/index.js",
+    "start": "npx nodemon--watch server server/index.js",
     "test": "test"
   },
   "repository": {
