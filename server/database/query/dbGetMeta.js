@@ -21,43 +21,42 @@ module.exports = async(product_id) => {
   let c = await client.query(queryCharacteristics)
   c = c.rows
 
-  // Create ratings and recommend object
-//   const ratings = {}
-//   const recommended = { 0: 0, 1: 0 }
-//   for (let i = 0; i < r.length; i++) {
-//     let review = r[i]
-//     ratings[review.rating] = ratings[review.rating] + 1 || 1
+  const ratings = {};
+  const recommended = { 0: 0, 1: 0 };
+  const characteristics = {};
 
-//     if (review.recommend) {
-//       recommended['1'] += 1
-//     } else {
-//       recommended['0'] += 1
-//     }
-//   }
+//ratings and rec loop
+  for (let i = 0; i < r.length; i++) {
 
-//   // Create characteristics object
-//   const characteristics = {}
-//   for (let i = 0; i < c.length; i++) {
-//     let characteristicId = c[i].id
-//     let characteristicName = c[i].name
-//     queryCharacteristicsReviews = {
-//       text: `
-//       select avg(value) from characteristics_reviews where characteristic_id=$1
-//       ;`,
-//       values: [characteristicId]
-//     }
-//     let averageScore = await client.query(queryCharacteristicsReviews)
-//     if (averageScore.rows[0].avg !== null) {
-//       averageScore = averageScore.rows[0].avg.substring(0, 6)
-//       characteristics[characteristicName] = { id: characteristicId, value: averageScore }
-//     } else {
-//       characteristics[characteristicName] = { id: characteristicId, value: null }
-//     }
-//   }
-  client.release()
-  console.log('TEST', r)
-  console.log('TESTer', c)
+    ratings[r[i].rating] = ratings[r[i].rating] + 1 || 1;
 
-//   return { product_id, ratings, recommended, characteristics }
+    if (r[i].recommend) {
+      recommended['1'] += 1
+    } else {
+      recommended['0'] += 1
+    }
+  };
+//characteristics loop
+  for (let i = 0; i < c.length; i++) {
+    let char_id = c[i].id;
+    let char_name = c[i].name;
+
+    queryCharacteristicsReviews = {
+      text: `SELECT AVG(value) FROM characteristics_reviews
+      WHERE characteristic_id=$1`,
+      values: [char_id]
+    };
+    let average = await client.query(queryCharacteristicsReviews);
+
+    if (average.rows[0].avg !== null) {
+      average = average.rows[0].avg.slice(0, 6);
+      characteristics[char_name] = { id: char_id, value: average };
+    } else {
+      characteristics[char_name] = { id: char_id, value: null };
+    }
+  };
+
+  client.release();
+  return { product_id, ratings, recommended, characteristics }
 }
 
