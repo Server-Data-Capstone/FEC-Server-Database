@@ -1,10 +1,8 @@
 require('dotenv').config();
-const fs = require('fs')
-const path = require('path');
 const express = require('express');
 const morgan = require('morgan');
 const cors = require('cors');
-const router = require('./routes/reviews');
+const router = require('./routes/reviews.js');
 
 const app = express();
 
@@ -22,7 +20,6 @@ console.log(`Server listening at http://localhost:${PORT}`);
 
 
 
-const readline = require('readline');
 
 
 // function readAndParse() {
