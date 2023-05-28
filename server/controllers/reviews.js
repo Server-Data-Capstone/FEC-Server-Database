@@ -14,12 +14,11 @@ module.exports = {
 
     dbGetReviews({product_id, page, count, sort})
       .then((data) => {
-        // console.log('this is data', data)
         res.status(200).send(data)
       })
       .catch((err) => {
         console.log(`ERROR CONTROLLERS GETREVIEWS`, err)
-        res.status(404).send(err)
+        res.sendStatus(500)
       })
   },
   getMeta: (req, res) => {
@@ -29,27 +28,27 @@ module.exports = {
       })
       .catch((err) => {
         console.log('ERROR CONTROLLERS GETMETA', err)
-        res.status(404).send(err)
+        res.sendStatus(500)
       })
   },
   putHelpful: (req, res) => {
     dbMarkHelpful(req.params.review_id)
       .then((data) => {
-        res.status(204).send(data)
+        res.status(202).send(data)
       })
       .catch((err) => {
         console.log('ERROR CONTROLLERS PUTHELPFUL', err)
-        res.status(404).send(err)
+        res.sendStatus(500)
       })
   },
   putReport: (req, res) => {
     dbMarkReported(req.params.review_id)
       .then((data) => {
-        res.status(204).send(data)
+        res.status(202).send(data)
       })
       .catch((err) => {
         console.log('ERROR CONTROLLERS PUTREPORT', err)
-        res.status(404).send(err)
+        res.sendStatus(500)
       })
   },
   postReview: (req, res) => {
@@ -60,7 +59,7 @@ module.exports = {
       })
       .catch((err) => {
         console.log('ERROR CONTROLLERS POST', err)
-        res.status(500).send(err)
+        res.sendStatus(500)
       })
   }
 }

@@ -10,6 +10,7 @@ CREATE DATABASE sdcreviews;
 
 \c sdcreviews;
 
+
 DROP TABLE IF EXISTS reviews CASCADE;
 
 CREATE TABLE reviews (
@@ -83,12 +84,17 @@ SELECT setval(pg_get_serial_sequence('characteristics', 'id'), MAX(id)) FROM cha
 SELECT setval(pg_get_serial_sequence('characteristics_reviews', 'id'), MAX(id)) FROM characteristics_reviews;
 SELECT setval(pg_get_serial_sequence('reviews_photos', 'id'), MAX(id)) FROM reviews_photos;
 
--- SELECT pg_catalog.setval(pg_get_serial_sequence('reviews', 'id'), (SELECT MAX(id) FROM reviews)+1);
 
+-- SELECT pg_catalog.setval(pg_get_serial_sequence('reviews', 'id'), (SELECT MAX(id) FROM reviews)+1);
 -- SELECT SETVAL((SELECT PG_GET_SERIAL_SEQUENCE('"reviews"', 'id')), (SELECT (MAX("id") + 1) FROM "reviews"), FALSE);
 
 
-
 -- SELECT NEXTVAL(PG_GET_SERIAL_SEQUENCE('"reviews"', 'id'));
-
 -- SELECT CURRVAL(PG_GET_SERIAL_SEQUENCE('"reviews"', 'id')) AS "Current Value", MAX("id") AS "Max Value" FROM "reviews";
+
+
+-- composite index
+CREATE INDEX review_comp_index ON reviews (product_id, rating, recommend);
+CREATE INDEX char_comp_index ON characteristics (product_id, name);
+CREATE INDEX char_rev_comp_index ON characteristics_reviews (characteristic_id, value);
+CREATE INDEX reviews_photos_comp_index ON reviews_photos (review_id);

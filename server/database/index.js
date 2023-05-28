@@ -7,14 +7,15 @@ const pool = new Pool({
   port: process.env.DB_PORT || '5432',
   database: process.env.DB_NAME || 'sdcreviews',
   password: process.env.DB_PASSWORD || '',
-  max: 12
+  max: 20
 })
 
-//ERR ON CLIENT BEHALF, PARTION OR BACKEND ERR
-// pool.on('error', (err, client) => {
-//   console.error('Unexpected error on idle client', err)
-//   process.exit(-1)
-// })
+// ERR ON CLIENT BEHALF, PARTION OR BACKEND ERR
+// TODO: look up from docs
+pool.on('error', (err, client) => {
+  console.error('Unexpected error on idle client', err)
+  process.exit(-1)
+})
 
 pool.connect()
   .then((client) => {
@@ -23,14 +24,5 @@ pool.connect()
   .catch((err) => {
     console.log('ERR DATABASE CONNECT', err)
   })
-
-
-// pool.connect()
-//   .then(() => {
-//     console.log('Connected to reviews database');
-//   })
-//   .catch((error) => {
-//     console.log('Could not connect to reviews database', error);
-//   })
 
   module.exports = pool;
