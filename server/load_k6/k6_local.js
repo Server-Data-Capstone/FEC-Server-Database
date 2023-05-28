@@ -4,13 +4,13 @@ import { sleep, check } from 'k6';
 
 export const options = {
   discardResponseBodies: true,
-  // stages: [
-  //   {duration: '1s', target: 1000},
-  //   {duration: '28s', target: 1000},
-  //   {duration: '1s', target: 0}
-  // ]
-  vus: 10,
-  duration: '30s',
+  stages: [
+    {duration: '1s', target: 1100},
+    {duration: '28s', target: 1100},
+    {duration: '1s', target: 1100}
+  ]
+  // vus: 200,
+  // duration: '30s',
   // httpDebug: 'full',
   // throw: true,
 
@@ -18,11 +18,11 @@ export const options = {
   //   constant_request_rate: {
   //     executor: 'constant-arrival-rate',
   //     // executor: 'constant-vus',
-  //     rate: 1000,
+  //     rate: 1100,
   //     timeUnit: '1s',
   //     // vus: 200,
   //     duration: '30s',
-  //     preAllocatedVUs: 500,
+  //     preAllocatedVUs: 1100,
   //     maxVUs: 1100
   //   }
   // }
@@ -36,7 +36,7 @@ export default function () {
   // putHelpful()
   // putReport()
 
-  // const new_id = Math.floor((Math.random() * 100000) + 900000);
+  // const new_id = Math.floor((Math.random() * 110000) + 900000);
   // const res = http.get(`http://localhost:3000/reviews?product_id=${new_id}`, {
   //   tags: {name: 'GetReviewsID'},
   // });
@@ -49,7 +49,7 @@ export default function () {
 //API endpoints
 
 const getReviews = () => {
-  const new_id = Math.floor((Math.random() * 100000) + 900000);
+  const new_id = Math.floor((Math.random() * 110000) + 900000);
   let res = http.get(`http://localhost:3000/reviews?product_id=${new_id}`, {
     tags: {name: 'GetReviewsID'},
   });
@@ -64,7 +64,7 @@ const getReviews = () => {
   sleep(1)
 };
 const getMeta = () => {
-  const new_id = Math.floor((Math.random() * 100000) + 900000);
+  const new_id = Math.floor((Math.random() * 110000) + 900000);
   let res = http.get(`http://localhost:3000/reviews?product_id=${new_id}`, {
     tags: {name: 'getMetaID'},
   });
@@ -74,7 +74,7 @@ const getMeta = () => {
   sleep(1)
 };
 const putHelpful = () => {
-  const new_id = Math.floor((Math.random() * 100000) + 5674952);
+  const new_id = Math.floor((Math.random() * 110000) + 5674952);
   let res = http.put(`http://localhost:3000/reviews/${new_id}/helpful`, {
     tags: {name: 'putHelpful'},
   });
@@ -84,7 +84,7 @@ const putHelpful = () => {
   sleep(1)
 };
 const putReport = () => {
-  const new_id = Math.floor((Math.random() * 100000) + 5674952);
+  const new_id = Math.floor((Math.random() * 110000) + 5674952);
   let res = http.put(`http://localhost:3000/reviews/${new_id}/report`, {
     tags: {name: 'putReport'},
   });
