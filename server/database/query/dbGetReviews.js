@@ -1,5 +1,4 @@
 const pool = require('../index.js');
-
 module.exports = ({product_id, page, count, sort}) => {
 
   let loader = (count * page - count);
@@ -32,7 +31,6 @@ module.exports = ({product_id, page, count, sort}) => {
       return client.query(query)
         .then((response) => {
           client.release()
-          // console.log('this is response', response)
           return response.rows
         })
         .catch((err) => {
@@ -41,4 +39,6 @@ module.exports = ({product_id, page, count, sort}) => {
           return err
         })
     })
+
 }
+

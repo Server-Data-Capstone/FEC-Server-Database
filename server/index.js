@@ -3,7 +3,6 @@ const express = require('express');
 const morgan = require('morgan');
 const cors = require('cors');
 const router = require('./routes/reviews.js');
-
 const app = express();
 
 app.use(morgan('tiny'));
@@ -12,14 +11,13 @@ app.use(express.json());
 
 app.use('/reviews', router);
 
+module.exports = app;
+
 // app.use(express.static(path.join(__dirname, '')));
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT);
-console.log(`Server listening at http://localhost:${PORT}`);
-
-
-
+// const PORT = process.env.PORT || 3000;
+// app.listen(PORT);
+// console.log(`Server listening at http://localhost:${PORT}`);
 
 
 // function readAndParse() {
