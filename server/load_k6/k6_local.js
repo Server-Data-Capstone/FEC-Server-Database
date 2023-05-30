@@ -4,63 +4,33 @@ import { sleep, check } from 'k6';
 
 export const options = {
   discardResponseBodies: true,
+  httpDebug: 'full',
   stages: [
     {duration: '1s', target: 1100},
     {duration: '28s', target: 1100},
     {duration: '1s', target: 1100}
   ]
-  // vus: 200,
-  // duration: '30s',
-  // httpDebug: 'full',
-  // throw: true,
-
-  // scenarios: {
-  //   constant_request_rate: {
-  //     executor: 'constant-arrival-rate',
-  //     // executor: 'constant-vus',
-  //     rate: 1100,
-  //     timeUnit: '1s',
-  //     // vus: 200,
-  //     duration: '30s',
-  //     preAllocatedVUs: 1100,
-  //     maxVUs: 1100
-  //   }
-  // }
-
-  // set thresholds later
 };
 
 export default function () {
-  getReviews()
+  // getReviews()
   // getMeta()
   // putHelpful()
   // putReport()
-
-  // const new_id = Math.floor((Math.random() * 110000) + 900000);
-  // const res = http.get(`http://localhost:3000/reviews?product_id=${new_id}`, {
-  //   tags: {name: 'GetReviewsID'},
-  // });
-  // check(res, {
-  //   'status was 200': (r) => r.status == 200
-  // });
-  // sleep(1)
+  postReview()
 }
-
 //API endpoints
-
 const getReviews = () => {
   const new_id = Math.floor((Math.random() * 110000) + 900000);
   let res = http.get(`http://localhost:3000/reviews?product_id=${new_id}`, {
     tags: {name: 'GetReviewsID'},
   });
   check(res, {
-    // 'data is coming back': (r) => r.body.length > 2000
-    'status was 200': (r) => {
+    'status was 200, Revs': (r) => {
       return r.status == 200
     }
 
   });
-  // console.log('this is res body', res.body)
   sleep(1)
 };
 const getMeta = () => {
@@ -69,7 +39,7 @@ const getMeta = () => {
     tags: {name: 'getMetaID'},
   });
   check(res, {
-    'status was 200': (r) => r.status == 200
+    'status was 200, Meta': (r) => r.status == 200
   });
   sleep(1)
 };
@@ -79,7 +49,7 @@ const putHelpful = () => {
     tags: {name: 'putHelpful'},
   });
   check(res, {
-    'status was 200': (r) => r.status == 200
+    'status was 202, Helpful': (r) => r.status == 202
   });
   sleep(1)
 };
@@ -89,7 +59,29 @@ const putReport = () => {
     tags: {name: 'putReport'},
   });
   check(res, {
-    'status was 200': (r) => r.status == 200
+    'status was 202, Report': (r) => r.status == 202
   });
   sleep(1)
 };
+const postReview = () => {
+
+  const new_id = Math.floor((Math.random() * 110000) + 900000);
+  let body = {
+    product_id: new_id,
+    rating: 5,
+    date: Date.now(),
+    summary: 'this is a test string for the sake of k6 testing via staging of the test. Will type until a bit over 50 characters',
+    body: 'Bob the builderBob the builderBob the builderBob the builderBob the builderBob the builderBob the builderBob the builderBob the builderBob the builderBob the builderBob the builderBob the builderBob the builderBob the builderBob the builderBob the builderBob the builderBob the builderBob the builderBob the builderBob the builderBob the builderBob the builderBob the builderBob the builderBob the builderBob the builderBob the builderBob the builderBob the builderBob the builderBob the builderBob the builder',
+    recommend: 'true',
+    reviewer_name: 'bob',
+    reviewer_email: 'bob@gmail.com'
+
+  }
+  let res = http.post(`http://localhost:3000/reviews?product_id=${new_id}`, body, {
+    tags: {name: 'postReview'}
+  })
+  check(res, {
+      'status was 201, Post': (r) => r.status == 201
+  });
+  sleep(1)
+}
