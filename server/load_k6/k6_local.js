@@ -4,7 +4,7 @@ import { sleep, check } from 'k6';
 
 export const options = {
   discardResponseBodies: true,
-  httpDebug: 'full',
+  // httpDebug: 'full',
   stages: [
     {duration: '1s', target: 1100},
     {duration: '28s', target: 1100},
@@ -13,11 +13,11 @@ export const options = {
 };
 
 export default function () {
-  // getReviews()
+  getReviews()
   // getMeta()
   // putHelpful()
   // putReport()
-  postReview()
+  // postReview()
 }
 //API endpoints
 const getReviews = () => {

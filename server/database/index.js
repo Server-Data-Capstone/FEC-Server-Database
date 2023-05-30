@@ -10,6 +10,8 @@ const pool = new Pool({
   max: 20
 })
 
+// const pool = new Pool()
+
 // ERR ON CLIENT BEHALF, PARTION OR BACKEND ERR
 // TODO: look up from docs
 pool.on('error', (err, client) => {
