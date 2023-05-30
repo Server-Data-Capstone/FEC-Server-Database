@@ -6,8 +6,7 @@
   "scripts": {
     "start":"node server/app.js",
     "server-dev": "npx nodemon server/app.js",
-    "test": "jest --verbose",
-    "coverage": "npx open ./coverage/lcov-report/index.html"
+    "K6": "k6 run /Users/ericlee/HackReactor/Reviews-Backend/server/load_k6/k6_local.js"
   },
   "repository": {
     "type": "git",
