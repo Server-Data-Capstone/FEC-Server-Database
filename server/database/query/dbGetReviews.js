@@ -30,8 +30,22 @@ module.exports = ({product_id, page, count, sort}) => {
     .then((client) => {
       return client.query(query)
         .then((response) => {
+          // console.log('this is response', product_id)
+
           client.release()
-          return response.rows
+          // let dataL = {
+          //   product: product_id,
+          // page: loader,
+          // count: count
+          // }
+          // console.log('this is data', dataL)
+          // return response.rows
+          return {
+            product: product_id,
+            page: loader,
+            count: Number(count),
+            results: response.rows
+            }
         })
         .catch((err) => {
           client.release()

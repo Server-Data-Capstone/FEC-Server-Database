@@ -1,4 +1,4 @@
-const axios = require('axios');
+// const axios = require('axios');
 const dbGetReviews = require('../database/query/dbGetReviews')
 const dbGetMeta = require('../database/query/dbGetMeta')
 const dbMarkHelpful = require('../database/query/dbMarkHelpful')
@@ -14,6 +14,7 @@ module.exports = {
 
     dbGetReviews({product_id, page, count, sort})
       .then((data) => {
+        // console.log('this is data', data)
         res.status(200).send(data)
       })
       .catch((err) => {
@@ -24,6 +25,7 @@ module.exports = {
   getMeta: (req, res) => {
     dbGetMeta(req.query.product_id)
       .then((data) => {
+        console.log('this is data', data)
         res.status(200).send(data)
       })
       .catch((err) => {

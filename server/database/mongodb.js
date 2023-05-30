@@ -1,7 +1,7 @@
-require("dotenv").config();
-const mongoose = require('mongoose');
+// require("dotenv").config();
+// const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://127.0.0.1:27017/reviews', {useNewUrlParser: true, useUnifiedTopology: true});
+// mongoose.connect('mongodb://127.0.0.1:27017/reviews', {useNewUrlParser: true, useUnifiedTopology: true});
 
 const reviewsSchema = new mongoose.Schema({
   id: Number,

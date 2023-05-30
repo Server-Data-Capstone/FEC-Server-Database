@@ -3,3 +3,5 @@ node_modules
 server/ETL_Test
 server/ETL
 server/database/scrap.sql
+newrelic.js
+newrelic_agent.log
