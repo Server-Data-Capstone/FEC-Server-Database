@@ -4,7 +4,6 @@ const { Pool } = require('pg');
 const pool = new Pool({
   host: process.env.DB_HOST || 'localhost',
   user: process.env.DB_USER || 'postgres',
-  port: process.env.DB_PORT || '5432',
   database: process.env.DB_NAME || 'sdcreviews',
   password: process.env.DB_PASSWORD || '',
   max: 20
@@ -26,5 +25,9 @@ pool.connect()
   .catch((err) => {
     console.log('ERR DATABASE CONNECT', err)
   })
+
+// pool.on('connect', (client) => {
+//   console.log(`pool connected to ${client.user}@${client.host} using database ${client.database} on port ${client.port}`)
+// })
 
   module.exports = pool;

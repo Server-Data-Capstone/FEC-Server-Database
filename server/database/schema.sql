@@ -1,8 +1,5 @@
--- /Users/ericlee/Downloads/characteristics.csv
--- TO START psql AND DB
--- psql sdcreviews
 -- TO COPY OFF SCHEMA
--- psql -d testdb -a -f ./schema.sql
+-- psql -d sdcreviews -a -f ./server/database/schema.sql
 -- \i /Users/ericlee/HackReactor/Reviews-Backend/server/database/schema.sql;
 
 DROP DATABASE IF EXISTS sdcreviews;
