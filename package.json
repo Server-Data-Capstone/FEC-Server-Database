@@ -4,8 +4,8 @@
   "description": "DBMS for Reviews&Ratings",
   "main": "server/index.js",
   "scripts": {
-    "start": "node server/app.js",
-    "server-dev": "npx nodemon server/app.js",
+    "start": "node server/index.js",
+    "server-dev": "npx nodemon server/index.js",
     "K6": "k6 run /Users/ericlee/HackReactor/Reviews-Backend/server/load_k6/k6_local.js",
     "newRelic": "node -r newrelic server/app.js",
     "schema": "psql -d sdcreviews -a -f server/database/schema.sql"
@@ -29,7 +29,6 @@
     "express": "^4.18.2",
     "mongoose": "^7.2.0",
     "morgan": "^1.10.0",
-    "newrelic": "^10.1.2",
     "node": "^20.2.0",
     "pg": "^8.11.0"
   },
