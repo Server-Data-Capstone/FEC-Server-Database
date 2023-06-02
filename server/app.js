@@ -3,7 +3,7 @@ require('dotenv').config();
 const app = require('./index')
 
 //CHANGE AS NEEDED FOR LOADER.IO
-app.get('/loaderio-8065e42ae55e3fbf7116bc4e286e221d/', (req, res) => res.send('loaderio-8065e42ae55e3fbf7116bc4e286e221d'));
+app.get('/loaderio-5d0c3726d47ac13c31970ba9f765d7ec/', (req, res) => res.send('loaderio-5d0c3726d47ac13c31970ba9f765d7ec'));
 
 
 

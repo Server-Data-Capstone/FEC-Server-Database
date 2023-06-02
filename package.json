@@ -4,8 +4,8 @@
   "description": "DBMS for Reviews&Ratings",
   "main": "server/index.js",
   "scripts": {
-    "start": "node server/index.js",
-    "server-dev": "npx nodemon server/index.js",
+    "start": "node server/app.js",
+    "server-dev": "npx nodemon server/app.js",
     "K6": "k6 run /Users/ericlee/HackReactor/Reviews-Backend/server/load_k6/k6_local.js",
     "newRelic": "node -r newrelic server/app.js",
     "schema": "psql -d sdcreviews -a -f server/database/schema.sql"
