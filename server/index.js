@@ -8,7 +8,7 @@ const app = express();
 app.use(morgan('dev'));
 app.use(cors());
 app.use(express.json());
-appuse(express.urlencoded({extended: true}));
+app.use(express.urlencoded({extended: true}));
 
 // app.get('/loaderio-b0ce8555e655a3ed8be356def2abfd94', (req, res) => res.send('loaderio-b0ce8555e655a3ed8be356def2abfd94'));
 app.use('/reviews', router);
