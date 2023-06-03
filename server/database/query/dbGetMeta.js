@@ -27,7 +27,6 @@ module.exports = async(product_id) => {
 
 //ratings and rec loop
   for (let i = 0; i < r.length; i++) {
-
     ratings[r[i].rating] = ratings[r[i].rating] + 1 || 1;
 
     if (r[i].recommend) {

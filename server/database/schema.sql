@@ -1,4 +1,3 @@
--- TO COPY OFF SCHEMA
 -- psql -d sdcreviews -a -f ./server/database/schema.sql
 -- \i /Users/ericlee/HackReactor/Reviews-Backend/server/database/schema.sql;
 
@@ -7,9 +6,7 @@ CREATE DATABASE sdcreviews;
 
 \c sdcreviews;
 
-
 DROP TABLE IF EXISTS reviews CASCADE;
-
 CREATE TABLE reviews (
   id SERIAL PRIMARY KEY,
   product_id INT,
@@ -25,18 +22,14 @@ CREATE TABLE reviews (
   helpfulness INT DEFAULT 0
 );
 
-
 DROP TABLE IF EXISTS characteristics CASCADE;
-
 CREATE TABLE characteristics (
   id SERIAL PRIMARY KEY,
   product_id INT,
   name TEXT
 );
 
-
 DROP TABLE IF EXISTS characteristics_reviews CASCADE;
-
 CREATE TABLE characteristics_reviews (
   id SERIAL PRIMARY KEY,
   characteristic_id INT REFERENCES characteristics(id) NOT NULL,
@@ -44,9 +37,7 @@ CREATE TABLE characteristics_reviews (
   value SMALLINT CHECK (value > 0 AND value < 6)
 );
 
-
 DROP TABLE IF EXISTS reviews_photos CASCADE;
-
 CREATE TABLE reviews_photos (
   id SERIAL PRIMARY KEY,
   review_id INT REFERENCES reviews(id) NOT NULL,
@@ -73,22 +64,11 @@ FROM '/Users/ericlee/HackReactor/Reviews-Backend/server/ETL/csv/reviews_photos.c
 DELIMITER ','
 CSV HEADER;
 
-
 -- MAYBE OUT OF SYNC FIXES
-
 SELECT setval(pg_get_serial_sequence('reviews', 'id'), MAX(id)) FROM reviews;
 SELECT setval(pg_get_serial_sequence('characteristics', 'id'), MAX(id)) FROM characteristics;
 SELECT setval(pg_get_serial_sequence('characteristics_reviews', 'id'), MAX(id)) FROM characteristics_reviews;
 SELECT setval(pg_get_serial_sequence('reviews_photos', 'id'), MAX(id)) FROM reviews_photos;
-
-
--- SELECT pg_catalog.setval(pg_get_serial_sequence('reviews', 'id'), (SELECT MAX(id) FROM reviews)+1);
--- SELECT SETVAL((SELECT PG_GET_SERIAL_SEQUENCE('"reviews"', 'id')), (SELECT (MAX("id") + 1) FROM "reviews"), FALSE);
-
-
--- SELECT NEXTVAL(PG_GET_SERIAL_SEQUENCE('"reviews"', 'id'));
--- SELECT CURRVAL(PG_GET_SERIAL_SEQUENCE('"reviews"', 'id')) AS "Current Value", MAX("id") AS "Max Value" FROM "reviews";
-
 
 -- composite index
 CREATE INDEX review_comp_index ON reviews (product_id, rating, recommend);
