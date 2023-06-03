@@ -10,7 +10,6 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
-// app.get('/loaderio-b0ce8555e655a3ed8be356def2abfd94', (req, res) => res.send('loaderio-b0ce8555e655a3ed8be356def2abfd94'));
 app.use('/reviews', router);
 module.exports = app;
 
